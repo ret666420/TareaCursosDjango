@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block imagen %}
+    <img src="{% static 'contenido/images/registrar.png' %}" alt="Imagen representativa de registro/eliminación" class="img-fluid">
+{% endblock %}
+
+{% block descripcion_modulo %}
+    Confirmar Eliminación de {{ object_name|default:"Elemento" }}
+{% endblock %}
+
+{% block content %}
+    <div class="card shadow mb-4">
+        <div class="card-header bg-danger text-white">
+            <h5 class="m-0 font-weight-bold">¡Atención! Confirmación de Eliminación</h5>
+        </div>
+        <div class="card-body">
+            <div class="alert alert-warning" role="alert">
+                <i class="fas fa-exclamation-triangle"></i> Estás a punto de eliminar
+                {% if curso %}
+                    el curso "<strong class="text-danger">{{ curso.nombre }}</strong>".
+                {% else %}
+                    este elemento.
+                {% endif %}
+            </div>
+
+            <p class="mb-4">
+                Esta acción es **irreversible**. Una vez eliminado, no podrás recuperar los datos asociados.
+                ¿Estás completamente seguro de que deseas proceder con la eliminación?
+            </p>
+
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-trash"></i>
+                    </span>
+                    <span class="text">Sí, eliminar permanentemente</span>
+                </button>
+                <a href="{% url 'cursos' %}" class="btn btn-secondary btn-icon-split ml-2">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <span class="text">Cancelar</span>
+                </a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

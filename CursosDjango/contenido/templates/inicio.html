@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block imagen %}
+    {% static 'contenido/images/home.png' %}
+{% endblock %}
+
+{% block descripcion_modulo %}
+    Inicio <span>Bienvenido</span>
+{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <h1 class="mb-4">Bienvenido al Portal de Cursos</h1>
+    <img src="{% static 'contenido/images/utm.png' %}" alt="Cursos" class="img-fluid mb-4" style="max-height: 300px;">
+    <p class="lead">
+        Este portal tiene como objetivo ofrecer cursos educativos para todos los niveles.<br>
+        Aprende a tu ritmo, desde cualquier lugar y en cualquier momento.
+    </p>
+</div>
+{% endblock %}

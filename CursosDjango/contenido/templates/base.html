@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Portal de Cursos</title>
+
+    <link rel="stylesheet" href="{% static 'contenido/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'contenido/css/londinium-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'contenido/css/styles.css' %}">
+</head>
+<body>
+
+<!-- menú -->
+ <!-- Menú con imagen personalizada -->
+<div class="user-menu dropdown p-3 d-flex align-items-center">
+    <a href="#" class="d-flex align-items-center text-decoration-none">
+        <img src="{% block imagen %}{% endblock %}" alt="Icono sección" class="rounded-circle me-2" width="50" height="50">
+        <div class="user-info">
+            {% block descripcion_modulo %}
+            Sección <span>Actual</span>
+            {% endblock %}
+        </div>
+    </a>
+</div>
+
+<nav class="navbar navbar-inverse">
+          <ul class="nav navbar-nav">
+            
+      <li><a href="{% url 'inicio' %}">Inicio</a></li>
+      <li><a href="{% url 'cursos' %}">Cursos</a></li>
+      <li><a href="{% url 'crear' %}">crear nuevo curso</a></li>
+      
+      </ul>
+      </div>
+</nav>
+{%block principal%}
+
+{% endblock %}
+<br>
+<div class="page-content">
+ 			<div class="breadcrumb-line">
+		        <ul class="breadcrumb">
+        		  <a href="{%url 'inicio'%}">
+        
+            {%if request.path == '/' %}
+              inicio
+            {%else%}
+              inicio{{request.path}}
+            {%endif%}
+            
+          </a>
+          
+        </ul>
+
+       </div>
+    <div class="container">
+     {% block content %}
+     
+     {% endblock %}
+    </div>
+
+    
+<footer class="bg-dark text-white text-center py-3 mt-5">
+        <p class="mb-0">© 2025 utm - Todos los derechos reservados a ret.</p>
+        <small>Desarrollado por Rey</small>
+    </footer>
+</body>
+</html>
